@@ -1,0 +1,57 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+	<url-mapping id="login">
+		<pattern value="/login" />
+		<view-id value="/login.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="home">
+		<pattern value="/pages/home" />
+		<view-id value="/pages/home.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="movimentacoes">
+		<pattern value="/pages/movimentacoes" />
+		<view-id value="/pages/movimentacoes.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="movimentacoes">
+		<pattern value="/pages/movimentacoes" />
+		<view-id value="/pages/movimentacoes.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="meusResgates">
+		<pattern value="/pages/resgates" />
+		<view-id value="/pages/meusResgates.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="pontosVencer">
+		<pattern value="/pages/vencimentos" />
+		<view-id value="/pages/pontosVencer.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="meusDados">
+		<pattern value="/pages/dados" />
+		<view-id value="/pages/meusDados.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="senhas">
+		<pattern value="/pages/senhas" />
+		<view-id value="/pages/senhas.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="faleConosco">
+		<pattern value="/pages/contato" />
+		<view-id value="/pages/faleConosco.xhtml" />
+	</url-mapping>
+	<url-mapping id="duvidasFrequentes">
+		<pattern value="/ajuda" />
+		<view-id value="/pages/duvidasFrequentes.xhtml" />
+	</url-mapping>
+	<url-mapping id="optout">
+		<pattern value="/optout" />
+		<view-id value="/optout.html" />
+	</url-mapping>
+</pretty-config>

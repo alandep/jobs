@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Class-Path: APP-INF/lib/jstl-1.2.jar APP-INF/lib/jersey-server-1.8.jar
+  APP-INF/lib/asm-3.1.jar APP-INF/lib/jersey-core-1.8.jar APP-INF/lib/
+ minha-conta.business-1.0.0.jar APP-INF/lib/jsr250-api-1.0.jar APP-INF
+ /lib/hibernate-entitymanager-3.4.0.GA.jar APP-INF/lib/ejb3-persistenc
+ e-1.0.2.GA.jar APP-INF/lib/hibernate-commons-annotations-3.1.0.GA.jar
+  APP-INF/lib/hibernate-annotations-3.4.0.GA.jar APP-INF/lib/hibernate
+ -core-3.3.0.SP1.jar APP-INF/lib/antlr-2.7.6.jar APP-INF/lib/commons-c
+ ollections-3.1.jar APP-INF/lib/dom4j-1.6.1.jar APP-INF/lib/xml-apis-1
+ .0.b2.jar APP-INF/lib/jta-1.1.jar APP-INF/lib/javassist-3.4.GA.jar AP
+ P-INF/lib/validation-api-1.0.0.GA.jar APP-INF/lib/hibernate-validator
+ -4.3.0.Final.jar APP-INF/lib/jboss-logging-3.1.0.CR2.jar APP-INF/lib/
+ mail-1.4.jar APP-INF/lib/activation-1.1.jar APP-INF/lib/slf4j-api-1.7
+ .2.jar APP-INF/lib/logback-classic-1.0.7.jar APP-INF/lib/logback-core
+ -1.0.7.jar APP-INF/lib/jcl-over-slf4j-1.7.2.jar APP-INF/lib/log4j-ove
+ r-slf4j-1.7.2.jar APP-INF/lib/jul-to-slf4j-1.7.2.jar APP-INF/lib/serv
+ let-api-2.5.jar APP-INF/lib/jsp-api-2.1.jar APP-INF/lib/jsf-api-2.1.2
+ 6.jar APP-INF/lib/jsf-impl-2.1.26.jar APP-INF/lib/primefaces-3.5.jar 
+ APP-INF/lib/rewrite-servlet-2.0.5.Final.jar APP-INF/lib/rewrite-confi
+ g-prettyfaces-2.0.5.Final.jar APP-INF/lib/rewrite-integration-faces-2
+ .0.5.Final.jar APP-INF/lib/SimpleCaptcha-1.1.1.jar APP-INF/lib/simple
+ captcha-1.2.1.jar APP-INF/lib/gson-2.2.4.jar APP-INF/lib/scribe-1.3.6
+ .jar
+

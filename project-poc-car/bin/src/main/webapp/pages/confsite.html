@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="confsiteModule">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description"
+	content="Gerenciamento de CONFSITE's">
+<meta name="author" content="Alan de Paulo Franco">
+
+<title>Gerenciar ConfSite</title>
+
+<link rel="shortcut icon" href="pages/img/favicon.png" />
+
+<!-- Bootstrap Core CSS -->
+<link href="pages/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="pages/css/landing-page.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="pages/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
+<link
+	href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+	rel="stylesheet" type="text/css">
+
+<!-- Java Script para importação da Biblioteca Angular -->
+<script src="pages/js/angular.min.js"></script>
+
+<!-- Java Script Controlador que Integra o FrontEnd com BackEnd -->
+<script src="pages/control/confsiteControl.js"></script>
+
+<!-- Java Script Para as validações Genéricas do Projeto. -->
+<script src="pages/js/car.js"></script>
+
+</head>
+
+<body ng-controller="confsiteControl">
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="pages/js/jquery-1.12.2.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="pages/js/bootstrap.min.js"></script>
+
+	<!-- Java Script Para a Bibliotéca de Paginação de Table. -->
+	<script src="pages/control/dirPagination.js"></script>
+
+	<!-- Plugin Angulara para Mascaras -->
+	<script src="pages/js/mask.js"></script>
+
+	<!-- Plugin Angulara para Campo Monetário -->
+	<script src="pages/js/angular-money-br-directive.js"></script>
+
+	<!-- Plugin Angulara Internacionalização -->
+	<script src="pages/js/angular-locale_pt-br.js"></script>
+
+	<!-- cabeçalho -->
+	<div ng-include="'pages/cabecalho.html'"></div>
+
+	<a name="inicio"></a>
+	<div class="panel panel-success">
+		<div class="panel-heading ">Gerenciar ConfSite</div>
+		<div class="panel-body">
+			<div>
+				<form name="formPrincipal">
+					<!-- Mensagens: Percorre o array de mensagens do controller e apresenta na tela -->
+					<div ng-repeat="mensagen in mensagens"
+						ng-show="formPrincipal.$invalid">
+						<div class="alert alert-danger">
+							<strong>Mensagem: </strong> {{mensagen}}
+						</div>
+					</div>
+
+					<div class="panel panel-success">
+						<div class="panel-body">
+							<!-- Primeira linha de Campos-->
+							<div class="form-group col-md-3">
+								<label for="id">Tipo da ConfSite</label>
+								<div class="input-group">
+									<span ng-show="formPrincipal.tipoConfsite.$error.required"
+										class="input-group-addon" style="color: red;"><i
+										class="glyphicon glyphicon-asterisk"></i></span> <span
+										ng-show="!formPrincipal.tipoConfsite.$error.required"
+										class="input-group-addon" style="color: green;"><i
+										class="glyphicon glyphicon-asterisk"></i></span> <select
+										name="tipoConfsite" id="tipoConfsite" class="form-control"
+										ng-model="confsite.tipoConfsite"
+										ng-selected="confsite.tipoConfsite" required
+										ng-options="tipoConfsite.nome for tipoConfsite in listaTipoConfsite track by tipoConfsite.id">
+										<option value="">Selecione</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group col-md-3">
+								<label for="id">Código da ConfSite</label>
+								<div class="input-group">
+									<span ng-show="formPrincipal.id.$error.required"
+										class="input-group-addon" style="color: red;"><i
+										class="glyphicon glyphicon-asterisk"></i></span> <span
+										ng-show="!formPrincipal.id.$error.required"
+										class="input-group-addon" style="color: green;"><i
+										class="glyphicon glyphicon-asterisk"></i></span> <input type="text"
+										name="id" class="form-control" ng-model="confsite.id" id="id"
+										maxlength="255" required>
+								</div>
+							</div>
+
+							<div class="form-group col-md-6">
+								<label for="url">URL</label>
+								<div class="input-group">
+									<span ng-show="formPrincipal.url.$error.required"
+										class="input-group-addon" style="color: red;"><i
+										class="glyphicon glyphicon-asterisk"></i></span> <span
+										ng-show="!formPrincipal.url.$error.required"
+										class="input-group-addon" style="color: green;"><i
+										class="glyphicon glyphicon-asterisk"></i></span> <input type="text"
+										name="url" class="form-control" ng-model="confsite.url"
+										id="url" maxlength="255" required />
+								</div>
+							</div>
+
+							<!-- Segunda linha de Campos-->
+							<div class="form-group col-md-3">
+								<label for="status" style="font-weight: bold;">Status</label>
+								<div class="input-group">
+									<span ng-show="formPrincipal.status.$error.required"
+										class="input-group-addon" style="color: red;"><i
+										class="glyphicon glyphicon-asterisk"></i></span> <span
+										ng-show="!formPrincipal.status.$error.required"
+										class="input-group-addon" style="color: green;"><i
+										class="glyphicon glyphicon-asterisk"></i></span> <input type="text"
+										ng-required="true" readonly name="status" class="form-control"
+										ng-model="confsite.status" id="status" maxlength="255"
+										required />
+								</div>
+							</div>
+
+							<div class="form-group col-md-3">
+								<label for="dtCriacao">Data de Criação</label>
+								<div class="input-group">
+									<span ng-show="formPrincipal.dtCriacao.$error.required"
+										class="input-group-addon" style="color: red;"><i
+										class="glyphicon glyphicon-asterisk"></i></span> <span
+										ng-show="!formPrincipal.dtCriacao.$error.required"
+										class="input-group-addon" style="color: green;"><i
+										class="glyphicon glyphicon-asterisk"></i></span> <input type="text"
+										name="dtCriacao" id="dtCriacao" required ui-mask="99/99/9999"
+										readonly class="form-control" ng-model="confsite.dtCriacao" />
+								</div>
+							</div>
+							<div class="form-group col-md-6"></div>
+							<div class="form-group col-md-12">
+								<div class="panel panel-success">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<span class="glyphicon glyphicon-upload "></span> Upload
+											Arquivos
+										</h3>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="form-group col-md-6">
+												<label for="id">Selecione o arquivo</label>
+												<div class="fileinput fileinput-new">
+													<span class="btn btn-default btn-file"> <input
+														type="file" id="fileUpload" name="fileUpload" multiple="multiple"
+														 ng-files="carregarArquivos($files)" />
+													</span>
+													<input type="button" value="Adicionar" ng-click="adicionarArquivo()" class="btn btn-primary"/>
+												</div>
+											</div>
+										</div>
+										<div class="row" ng-show="listaArquivo.length > 0">
+											<div class="form-group col-md-12">
+												<table
+													class="dataTable table table-striped table-bordered table-hover table-list">
+													<thead>
+														<tr>
+															<th style="width: 5%; text-align: center"><em
+																class="fa fa-cog"></em></th>
+															<th>Arquivo</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr dir-paginate="arquivoTabela in listaArquivo|itemsPerPage:5">
+															<td style="width: 5%" align="center"><a
+																class="btn btn-default" data-toggle="tooltip"
+																data-placement="top" title="Remover arquivo" ng-click="excluirArquivo(arquivoTabela)"><em
+																	class="fa fa-times"></em></a></td>
+															<td>{{arquivoTabela.nome}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<span class="glyphicon glyphicon-wrench "></span> Opções
+							</h3>
+						</div>
+
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-xs-12 col-md-12 pull-left">
+									<a href="#" class="btn btn-success btn-lg"
+										title="Gerar ConfSite TI" role="button"
+										ng-click="gerarConfSiteTI()"><span
+										class="glyphicon glyphicon-floppy-disk"></span> <br /> Gerar
+										ConfSite TI</a> <a href="#" class="btn btn-primary btn-lg"
+										title="Gerar ConfSite QA" role="button"
+										ng-click="gerarConfSiteQA()"><span
+										class="glyphicon glyphicon-floppy-disk"></span> <br /> Gerar
+										ConfSite QA</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+				<a name="pesquisar"></a> <br>
+				<div class="input-group">
+					<span class="input-group-addon"><i
+						class="glyphicon glyphicon-search"></i></span> <input type="text"
+						class="form-control" ng-model="criterio"
+						placeholder="Pesquisar um registro já cadastrado." />
+				</div>
+				<br>
+
+				<div class="panel panel-success">
+					<div class="panel-body">
+
+						<table
+							class="dataTable table table-striped table-bordered table-hover table-list">
+
+							<thead>
+								<tr>
+									<th style="width: 5%; text-align: center"><em
+										class="fa fa-cog"></em></th>
+
+									<th ng-click="ordenar('id')">Código da ConfSite<span
+										class="glyphicon sort-icon" ng-show="sortKey=='id'"
+										ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+									</th>
+
+									<th ng-click="ordenar('status')">Status<span
+										class="glyphicon sort-icon" ng-show="sortKey=='status'"
+										ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+									</th>
+
+									<th ng-click="ordenar('dtCriacao')">Data de Criação<span
+										class="glyphicon sort-icon" ng-show="sortKey=='dtCriacao'"
+										ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+									</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr
+									dir-paginate="confSiteTabela in listaConfsite|filter:criterio|orderBy:sortKey:reverse|itemsPerPage:5"
+									ng-click="seleciona(confSiteTabela)">
+									<td style="width: 5%" align="center"><a
+										class="btn btn-default" data-toggle="tooltip"
+										data-placement="top" title="Selecionar Registro"><em
+											class="fa fa-pencil"></em></a></td>
+									<td>{{confSiteTabela.id}}</td>
+									<td>{{confSiteTabela.status}}</td>
+									<td>{{confSiteTabela.dtCriacao | date : 'dd/MM/yyyy'}}</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="row">
+							<div class="col-md-4 col-xs-4 pull-left"></div>
+							<div class="col-md-8 col-xs-8 pull-center">
+								<dir-pagination-controls max-size="5" direction-links="true"
+									boundary-links="true"> </dir-pagination-controls>
+							</div>
+						</div>
+
+						<span ng-show="(listaConfsite | filter:criterio).length == 0">Nenhum
+							registro disponível!</span> <a name="registrosCadastrados"></a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Rodapé -->
+	<div ng-include="'pages/rodape.html'"></div>
+
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="carModule">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Cadastro de Veículos">
+	<meta name="author" content="Alan de Paulo Franco">
+	
+	<title>{{'register_car' | translate}}</title>
+	
+	<!-- Inclusão do favicon -->
+	<link rel="shortcut icon" href="pages/img/favicon.png" />
+	
+	<!-- Bootstrap Core CSS -->
+	<link href="pages/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Custom CSS -->
+	<link href="pages/css/landing-page.css" rel="stylesheet">
+	
+	<!-- Custom Fonts -->
+	<link href="pages/font-awesome/css/font-awesome.min.css"
+		rel="stylesheet" type="text/css">
+	
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+		rel="stylesheet" type="text/css">
+	
+	<!-- Java Script para importação da Biblioteca Angular -->
+	<script src="pages/js/angular.min.js"></script>
+	
+	<!-- Java Script Controlador que Integra o FrontEnd com BackEnd -->
+	<script src="pages/control/carControl.js"></script>
+	
+	<!-- Java Script Para as validações Genéricas do Projeto. -->
+	<script src="pages/js/car.js"></script>
+	
+</head>
+
+<body ng-controller="carControl">
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="pages/js/jquery-1.12.2.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="pages/js/bootstrap.min.js"></script>
+
+	<!-- Java Script Para a Bibliotéca de Paginação de Table. -->
+	<script src="pages/control/dirPagination.js"></script>
+
+	<!-- Plugin Angulara para Mascaras -->
+	<script src="pages/js/mask.js"></script>
+
+	<!-- Plugin Angulara para Campo Monetário -->
+	<script src="pages/js/angular-money-br-directive.js"></script>
+
+	<!-- Plugin Angulara Internacionalização -->
+	<script src="pages/js/angular-locale_pt-br.js"></script>
+	
+	<!-- Arquivo que armazena os rotulus internacionalizados de cada idioma-->
+	<script src="pages/js/languages.js"></script>
+	
+	<!-- Inicio dos script's de internacionalização -->
+	<script src="pages/js/angular-translate.js"></script>
+	<script src="pages/js/angular-translate-handler-log.js"></script>
+	<script src="pages/js/angular-translate-loader-static-files.js"></script>
+	<script src="pages/js/angular-translate-loader-url.js"></script>
+	<script src="pages/js/angular-translate-storage-cookie.js"></script>
+	<script src="pages/js/angular-translate-storage-local.js"></script>
+	<!-- Fim dos script's de internacionalização -->
+	
+	<!-- cabeçalho -->
+	<div ng-include="'pages/cabecalho.html'"></div>
+	
+	<a name="inicio"></a>
+	<div class="panel panel-success">
+		<div class="panel-heading ">{{'register_car' | translate}}</div>
+		<div class="panel-body">
+			<div>
+				<form name="formPrincipal">
+					<!-- Mensagens: Percorre o array de mensagens do controller e apresenta na tela -->
+					<div ng-repeat="mensagen in mensagens"
+						ng-show="formPrincipal.$invalid">
+						<div class="alert alert-danger">
+							<strong>Mensagem: </strong> {{mensagen}}
+						</div>
+					</div>
+
+					<div class="panel panel-success">
+						<div class="panel-body">
+						
+							<!-- 1º linha de Campos-->
+							
+							<div class="form-group col-md-4">
+								<label for="brand">{{'brand' | translate}}</label>
+								<div class="input-group">
+									<span ng-show="formPrincipal.brand.$error.required" class="input-group-addon" style="color: red;"> <i class="glyphicon glyphicon-asterisk"></i></span>
+									<span ng-show="!formPrincipal.brand.$error.required" class="input-group-addon" style="color: green;"> <i class="glyphicon glyphicon-asterisk"></i></span>
+									 
+									<input type="text" name="brand" id="brand" ng-model="car.brand" class="form-control"   maxlength="40" required>
+								</div>
+							</div>
+							
+							<div class="form-group col-md-4">
+								<label for="model">{{'model' | translate}}</label>
+								<div class="input-group">
+									<span ng-show="formPrincipal.model.$error.required" class="input-group-addon" style="color: red;"><i class="glyphicon glyphicon-asterisk"></i></span>									 
+									<span ng-show="!formPrincipal.model.$error.required" class="input-group-addon" style="color: green;"><i class="glyphicon glyphicon-asterisk"></i></span>																		
+									
+									<input type="text" name="model" id="model" ng-model="car.model" class="form-control"   maxlength="50" required>
+								</div>
+							</div>
+							
+							<div class="form-group col-md-4">
+								<label for="price">{{'price' | translate}}</label>
+								<div class="input-group">
+									<span ng-show="formPrincipal.price.$error.required" class="input-group-addon" style="color:red;"><i class="glyphicon glyphicon-asterisk"></i></span>
+									<span ng-show="!formPrincipal.price.$error.required" class="input-group-addon" style="color:green;"><i class="glyphicon glyphicon-asterisk"></i></span>
+									
+									<input type="text" name="price" id="price" ng-model="car.price" class="form-control" format="number" maxlength="18" required>
+								</div>
+							</div>
+
+							<!-- 2º linha de Campos-->
+							
+							<div class="form-group col-md-4">
+								<label for="color">{{'color' | translate}}</label>
+								<div class="input-group">
+									<span ng-show="formPrincipal.color.$error.required" class="input-group-addon" style="color: red;"><i class="glyphicon glyphicon-asterisk"></i></span>									 
+									<span ng-show="!formPrincipal.color.$error.required" class="input-group-addon" style="color: green;"><i class="glyphicon glyphicon-asterisk"></i></span>																		
+									<input type="text" name="color" id="color" ng-model="car.color" class="form-control"   maxlength="30" required>
+								</div>
+							</div>
+							
+							<div class="form-group col-md-4">
+								<label for="registrationDate">{{'registration_date' | translate}}</label>
+								<div class="input-group">
+									<span ng-show="formPrincipal.registrationDate.$error.required" class="input-group-addon" style="color: red;"><i class="glyphicon glyphicon-asterisk"></i></span>
+									<span ng-show="!formPrincipal.registrationDate.$error.required" class="input-group-addon" style="color: green;"><i class="glyphicon glyphicon-asterisk"></i></span>
+									<input type="text" name="registrationDate" id="registrationDate"  ui-mask="99/99/9999" readonly class="form-control" ng-model="car.updateDate" />
+								</div>
+							</div>
+							
+							<div class="form-group col-md-4">
+								<label for="updateDate">{{'update_date' | translate}}</label>
+								<div class="input-group">
+									<span ng-show="formPrincipal.updateDate.$error.required" class="input-group-addon" style="color: red;"><i class="glyphicon glyphicon-asterisk"></i></span>
+									<span ng-show="!formPrincipal.updateDate.$error.required" class="input-group-addon" style="color: green;"><i class="glyphicon glyphicon-asterisk"></i></span>
+									<input type="text" name="updateDate" id="updateDate"  ui-mask="99/99/9999" readonly class="form-control" ng-model="car.updateDate" />
+								</div>
+							</div>
+							
+							
+							<!-- 3º linha de Campos-->
+							
+							<div class="form-group col-md-6">
+								<label for="description">{{'description' | translate}}</label>
+								<div class="input-group">
+									<span ng-show="formPrincipal.description.$error.required" class="input-group-addon" style="color: red;"><i class="glyphicon glyphicon-asterisk"></i></span>
+									<span ng-show="!formPrincipal.description.$error.required" class="input-group-addon" style="color: green;"><i class="glyphicon glyphicon-asterisk"></i></span>
+									
+									<textarea name="description" id="description" ng-model="car.description" class="form-control" required></textarea>
+								</div>
+							</div>
+							
+							<div class="form-group col-md-2">
+								<label for="color">{{'year' | translate}}</label>
+								
+									<div class="input-group spinner">
+										<span ng-show="formPrincipal.year.$error.required" class="input-group-addon" style="color: red;"><i class="glyphicon glyphicon-asterisk"></i></span>									 
+										<span ng-show="!formPrincipal.year.$error.required" class="input-group-addon" style="color: green;"><i class="glyphicon glyphicon-asterisk"></i></span>
+									
+									    <input type="text" name="year" id="year" ng-model="car.year" class="form-control"   maxlength="4"   min="0" max="9999" required>
+									    <div class="input-group-btn-vertical">
+									      <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+									      <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+									    </div>
+									</div>
+								
+							</div>
+							
+							<div class="form-group col-md-2">
+								<label for="isNew">{{'is_new' | translate}}</label>
+								<div class="input-group">
+								
+									<div class="btn-group" data-toggle="buttons">
+									   <label class="radio-inline">
+											<input type="radio" value="true" ng-model="car.isNew" ng-value="true"> 
+											{{'yes' | translate}}
+									  </label>
+									  <label class="radio-inline" >
+											<input type="radio" value="false" ng-model="car.isNew" ng-value="false"> 
+											{{'no' | translate}}
+									  </label>
+									</div>
+								</div>
+							</div>																							
+						</div>
+					</div>
+					
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<span class="glyphicon glyphicon-wrench "></span> {{'options' | translate}}
+							</h3>
+						</div>
+
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-xs-12 col-md-12 pull-left">
+									<a href="#" class="btn btn-success btn-lg"
+										title="Salvar Registro" role="button"
+										ng-click="save()"><span
+										class="glyphicon glyphicon-floppy-disk"></span> <br /> {{'save' | translate}}</a> 
+										
+									<a href="#" class="btn btn-danger btn-lg"
+										title="Excluir Registro" role="button"
+										ng-click="delete()"><span
+										class="glyphicon glyphicon-trash"></span> <br /> {{'delete' | translate}}</a>
+										
+									<a href="#" class="btn btn-primary btn-lg"
+										title="Limpar Campos para Cadastrar um Novo Registro"
+										role="button" ng-click="novo()"><span
+										class="glyphicon glyphicon-folder-open"></span> <br />{{'new' | translate}}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+				<a name="pesquisar"></a> <br>
+				
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="glyphicon glyphicon-search"></i>
+					</span> 
+					<input type="text"class="form-control" ng-model="criterio" placeholder="{{'record_already_registered' | translate}}" />
+				</div>
+				<br>
+
+				<div class="panel panel-success">
+					<div class="panel-body">
+
+						<table class="dataTable table table-striped table-bordered table-hover table-list">						
+							<thead>
+								<tr>
+									<th style="width: 5%; text-align: center">
+										<em class="fa fa-cog"></em>
+									</th>
+									
+									<th ng-click="ordenar('brand')">
+										{{'brand' | translate}}
+										<span class="glyphicon sort-icon" ng-show="sortKey=='brand'"
+											  ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+										</span>
+									</th>
+									
+									<th ng-click="ordenar('model')">
+										{{'model' | translate}}
+										<span class="glyphicon sort-icon" ng-show="sortKey=='model'"
+											  ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+										</span>
+									</th>
+									
+									<th ng-click="ordenar('color')">
+										{{'color' | translate}}
+										<span class="glyphicon sort-icon" ng-show="sortKey=='color'"
+											  ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+										</span>
+									</th>
+									
+									<th style="text-align: center"ng-click="ordenar('year')">
+										{{'year' | translate}}
+										<span class="glyphicon sort-icon" ng-show="sortKey=='year'"
+											  ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+										</span>
+									</th>
+									
+									<th ng-click="ordenar('price')">
+										{{'price' | translate}}
+										<span class="glyphicon sort-icon" ng-show="sortKey=='price'"
+											  ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+										</span>
+									</th>
+
+									<th ng-click="ordenar('registrationDate')">
+										{{'registration_date' | translate}}
+										<span class="glyphicon sort-icon" ng-show="sortKey=='registrationDate'"
+										      ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+										</span>
+									</th>
+									
+									<th ng-click="ordenar('updateDate')">
+										{{'update_date' | translate}}
+										<span class="glyphicon sort-icon" ng-show="sortKey=='updateDate'"
+										      ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+										</span>
+									</th>
+									
+									<th style="text-align: center" ng-click="ordenar('isNew')">
+										{{'is_new' | translate}}
+										<span class="glyphicon sort-icon" ng-show="sortKey=='isNew'"
+											  ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}">
+										</span>
+									</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr
+									dir-paginate="tableCar in listCar|filter:criterio|orderBy:sortKey:reverse|itemsPerPage:5"
+									ng-click="select(tableCar)">
+									<td style="width: 5%" align="center">
+										<a class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Selecionar Registro"><em class="fa fa-pencil"></em></a>
+									</td>									
+									<td style="width: 20%">{{tableCar.brand}}</td>
+									<td style="width: 16%">{{tableCar.model}}</td>
+									<td style="width: 11%">{{tableCar.color}}</td>
+									<td style="width: 5%" align="center">{{tableCar.year}}</td>
+									<td style="width: 10%">{{tableCar.price | currency : '' : 2}}</td>
+									<td style="width: 10%">{{tableCar.registrationDate | date : 'dd/MM/yyyy'}}</td>
+									<td style="width: 12%">{{tableCar.updateDate | date : 'dd/MM/yyyy'}}</td>
+									<td style="width: 11%" align="center">{{tableCar.isNew ? ('yes' | translate) : ('no' | translate)}}</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="row">
+							<div class="col-md-4 col-xs-4 pull-left"></div>
+							<div class="col-md-8 col-xs-8 pull-center">
+								<dir-pagination-controls max-size="5" direction-links="true"
+									boundary-links="true"> </dir-pagination-controls>
+							</div>
+						</div>
+
+						<span ng-show="(listCar | filter:criterio).length == 0">
+							{{'no_record_available' | translate}}
+						</span> 
+						<a name="registrosCadastrados"></a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+	<div class="smoothscroll-top">
+    <span class="scroll-top-inner">
+        <i class="fa fa-2x fa-arrow-circle-up"></i>
+    </span>
+</div>
+
+	<!-- Rodapé -->
+	<div ng-include="'pages/rodape.html'"></div>
+
+</body>
+</html>

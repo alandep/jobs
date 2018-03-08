@@ -1,0 +1,9 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" >
+	
+	<cache name="cars" maxElementsInMemory="800" eternal="false"
+		timeToIdleSeconds="1200" timeToLiveSeconds="1200" overflowToDisk="true"
+		maxElementsOnDisk="1200" maxEntriesLocalHeap="1200" diskPersistent="false"
+		diskExpiryThreadIntervalSeconds="1200" />
+
+</ehcache>
